@@ -1,13 +1,17 @@
  import { NavLink } from "react-router-dom";
  import "./Navbar.css";
+ import {useAuth} from "../store/auth";
+
+ 
  
 export const Navbar = () => {
+  const {isLoggedIn} = useAuth();
   return (
      <>
        <header>
         <div className="container">
             <div className='logo-brand'>
-                <NavLink to="/">raman</NavLink>
+                <NavLink to="/">Developers</NavLink>
             </div>
 
             <nav>
@@ -24,12 +28,24 @@ export const Navbar = () => {
                     <li>
                     <NavLink to="/services">Services</NavLink>
                     </li>
+
+                    {isLoggedIn ? (
                     <li>
-                    <NavLink to="/Register">Register</NavLink>
+                    <NavLink to="/logout">Logout</NavLink>
                     </li>
-                    <li>
-                    <NavLink to="/login">Login</NavLink>
-                    </li>
+                    ):(
+                      <>
+                        <li>
+                      <NavLink to="/Register">Register</NavLink>
+                      </li>
+                      <li>
+                      <NavLink to="/login">Login</NavLink>
+                      </li>
+                      </>
+                     )
+                   }
+                    
+                   
                 </ul>
             </nav>
         </div>

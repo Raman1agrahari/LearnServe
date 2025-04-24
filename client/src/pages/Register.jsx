@@ -1,4 +1,6 @@
 import { useState } from "react";
+import {useNavigate} from "react-router-dom";
+import {useAuth} from "../store/auth";
 
 export const Register = () => {
   const [user, setUser] = useState({
@@ -7,6 +9,9 @@ export const Register = () => {
     phone: "",
     password: "",
   });
+
+ const navigate = useNavigate();
+ const {storeTokenInLs} = useAuth();
 
   const handleInput = (e) => {
     console.log(e);
@@ -20,12 +25,33 @@ export const Register = () => {
   };
 
   // handle form on submit
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(user);
+    try{
+      const response = await fetch(`http://localhost:3000/api/auth/register`, {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify(user),
+      })
+
+      if(response.ok){
+        const res_data = await response.json();
+        console.log("res from server",res_data);
+        storeTokenInLs(res_data.token);
+        setUser({username: "",email: "",phone: "",password: "",});
+        navigate("/login");
+      }
+      console.log(response);
+     
+    }catch(error){
+        console.log("register",error);
+    }
   };
 
-  
+  //  Help me reach 1 Million subs 👉 https://youtube.com/thapatechnical
 
   return (
     <>
@@ -41,8 +67,7 @@ export const Register = () => {
                   height="500"
                 />
               </div>
-              
-
+              {/* our main registration code  */}
               <div className="registration-form">
                 <h1 className="main-heading mb-3">registration form</h1>
                 <br />

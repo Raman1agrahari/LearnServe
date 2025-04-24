@@ -1,5 +1,5 @@
 const User = require("../model/user.model");
-const bcrypt = require("bcryptjs");
+ 
 
 const home = async (req, res) => {
     try{
@@ -13,7 +13,13 @@ const home = async (req, res) => {
 const register = async (req, res) => {
     try{
         console.log(req.body);
-         const {username,email,phone,password} = req.body;
+
+        const {username,email,phone,password} = req.body;
+
+        if (!username || !email || !phone || !password ) {
+            return res.status(400).json({ message: "all field are required" });
+          }
+         
   
          const userExist = await User.findOne({email});
 

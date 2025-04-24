@@ -1,8 +1,112 @@
-import React from 'react'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {useAuth} from "../store/auth";
+
+const URL = "http://localhost:3000/api/auth/login";
 
 export const Login = () => {
-  return (
-    <div>Login</div>
-  )
-}
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
+  const navigate = useNavigate();
+  const {storeTokenInLs} = useAuth();
+
+  const handleInput = (e) => {
+    console.log(e);
+    
+    const { name, value } = e.target;
+     setUser((prev) => 
+       ({ ...prev,
+       [name]: value })
+      );
+  };
+
+  // handle form on submit
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    console.log(user);
+    try{
+      const response = await fetch(URL, {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify(user),
+      })
+      
+      console.log("login",response);
+
+      if(response.ok){
+        const res_data = await response.json();
+        console.log("res from server",res_data);
+        storeTokenInLs(res_data.token);
+        alert("Login succcessfully");
+        setUser({email:"",password:""});
+        navigate("/");
+      }else{
+        alert("invalid credentials");
+        console.log("invalid credential");
+      }
+    }catch(error){
+        console.log("register",error);
+    }
+  };
+
+  //  Help me reach 1 Million subs 👉 https://youtube.com/thapatechnical
+
+  return (
+    <>
+      <section>
+        <main>
+          <div className="section-registration">
+            <div className="container grid grid-two-cols">
+              <div className="registration-image reg-img">
+                <img
+                  src="/images/login.png"
+                  alt="good education"
+                  width="200"
+                  height="400"
+                />
+              </div>
+              
+              <div className="registration-form">
+                <h1 className="main-heading mb-3">Login form</h1>
+                <br />
+                <form onSubmit={handleSubmit}>
+      
+                  <div>
+                    <label htmlFor="email">email</label>
+                    <input
+                      type="text"
+                      name="email"
+                      value={user.email}
+                      onChange={handleInput}
+                      placeholder="email"
+                    />
+                  </div>
+                 
+                  <div>
+                    <label htmlFor="password">password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      value={user.password}
+                      onChange={handleInput}
+                      placeholder="password"
+                    />
+                  </div>
+                  <br />
+                  <button type="submit" className="btn btn-submit">
+                    Login Now
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </main>
+      </section>
+    </>
+  );
+};
