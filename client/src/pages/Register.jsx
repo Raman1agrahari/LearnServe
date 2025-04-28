@@ -37,21 +37,26 @@ export const Register = () => {
         body:JSON.stringify(user),
       })
 
+      const res_data = await response.json();
+      console.log("res from server",res_data.extraDetails);
+
       if(response.ok){
-        const res_data = await response.json();
-        console.log("res from server",res_data);
+       
         storeTokenInLs(res_data.token);
         setUser({username: "",email: "",phone: "",password: "",});
-        navigate("/login");
+        alert("registration successfull");
+        navigate("/");
       }
-      console.log(response);
+      else{
+        alert(res_data.extraDetails ? res_data.extraDetails: res_data.message);
+      }
      
     }catch(error){
         console.log("register",error);
     }
   };
 
-  //  Help me reach 1 Million subs 👉 https://youtube.com/thapatechnical
+  
 
   return (
     <>

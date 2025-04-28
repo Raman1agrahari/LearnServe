@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {useAuth} from "../store/auth";
+import { toast } from 'react-toastify';
 
 const URL = "http://localhost:3000/api/auth/login";
 
@@ -36,25 +37,26 @@ export const Login = () => {
         body:JSON.stringify(user),
       })
       
-      console.log("login",response);
+      console.log("login form",response);
+
+      const res_data = await response.json();
+         
 
       if(response.ok){
-        const res_data = await response.json();
-        console.log("res from server",res_data);
-        storeTokenInLs(res_data.token);
         alert("Login succcessfully");
+        storeTokenInLs(res_data.token);
+       
         setUser({email:"",password:""});
         navigate("/");
       }else{
-        alert("invalid credentials");
-        console.log("invalid credential");
-      }
+         alert(res_data.extraDetails ? res_data.extraDetails: res_data.message);
+         };
     }catch(error){
-        console.log("register",error);
+        console.log(error);
     }
   };
 
-  //  Help me reach 1 Million subs 👉 https://youtube.com/thapatechnical
+ 
 
   return (
     <>
