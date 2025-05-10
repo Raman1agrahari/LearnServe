@@ -5,12 +5,12 @@ const app = express();
 const authrouter = require("./router/auth.router");
 const contactRoute = require("./router/contact.router");
 const serviceRoute = require("./router/service.router");
-const getAllUser = require("./router/admin.router");
+const adminRoute = require("./router/admin.router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middleware/error.middleware");
  
 const corsOptions = {
-  origin:"http://localhost:5173",
+  origin:"http://localhost:5174",
   methods:"GET, POST, PUT,DELETE, PATCH, HEAD",
   credentials:true,
 };
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use("/api/auth",authrouter);
 app.use("/api/form",contactRoute );
 app.use("/api/data",serviceRoute);
-app.use("api/admin",getAllUser);
+app.use("/api/admin",adminRoute);
 
 app.use(errorMiddleware); 
 

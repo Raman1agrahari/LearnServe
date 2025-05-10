@@ -3,7 +3,7 @@ import "./Footer.css";
 export const Footer = () => {
   return (
      <footer>
-         &copy; {new Date().getFullYear()} Your Website Name. All rights reserved.
+         Designed And Developed by Raman Agrahari     Copyright  &copy; {new Date().getFullYear()} 
      </footer>
   )
 };

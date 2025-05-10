@@ -9,6 +9,10 @@
  import {Navbar} from "./Components/Navbar";
  import {Logout} from "./pages/Logout";
  import { Footer } from "./Components/Footer/Footer";
+ import { AdminLayout } from "./Components/Layouts/admin.Layout";
+ import {AdminUsers} from "./pages/admin.users";
+ import { AdminContacts } from "./pages/admin.contacts";
+ import {AdminUserUpdate} from "./pages/admin.update";
  
  
  
@@ -27,6 +31,11 @@
             <Route path="/login" element={<Login/>} />
             <Route path="/logout" element={<Logout/>} />
             <Route path="*" element={<Error/>} />
+            <Route path="/admin" element={< AdminLayout/>}>
+               <Route path="users" element={<AdminUsers/>}/>
+               <Route path="contacts" element={<AdminContacts/>}/>
+               <Route path="update/:id/update" element={<AdminUserUpdate/>}/>
+            </Route>
           </Routes>
         <Footer/>
       </BrowserRouter>
