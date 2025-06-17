@@ -10,7 +10,7 @@ const connectDb = require("./utils/db");
 const errorMiddleware = require("./middleware/error.middleware");
  
 const corsOptions = {
-  origin:"http://localhost:5173",
+  origin:"https://learn-serve-ip8k.vercel.app",
   methods:"GET, POST, PUT,DELETE, PATCH, HEAD",
   credentials:true,
 };
