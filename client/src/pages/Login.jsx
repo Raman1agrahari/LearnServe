@@ -24,6 +24,18 @@ export const Login = () => {
       );
   };
 
+  const login = async () => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email, password })
+  });
+  const data = await res.json();
+  console.log(data);
+};
+
   // handle form on submit
   const handleSubmit = async(e) => {
     e.preventDefault();
