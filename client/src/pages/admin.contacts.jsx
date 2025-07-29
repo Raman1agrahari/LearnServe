@@ -7,7 +7,7 @@ export const  AdminContacts  = () => {
   const { authorizationToken } = useAuth();
   const getContactsData = async() =>{
     try{
-      const response = await fetch("http://localhost:3000/api/admin/contacts",{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/contacts`,{
         method:"GET",
         headers:{
           Authorization : authorizationToken ,
@@ -27,7 +27,7 @@ export const  AdminContacts  = () => {
 
   const deleteContactById = async (id) => {
     try{
-      const response = await fetch(`http://localhost:3000/api/admin/contacts/delete/${id}`,{
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/admin/contacts/delete/${id}`,{
         method:"DELETE",
         headers:{
           Authorization: authorizationToken ,
