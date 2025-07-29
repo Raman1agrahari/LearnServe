@@ -40,7 +40,7 @@ export const Contact = () => {
     console.log(contact);
 
     try{
-      const response = await fetch(`http://localhost:3000/api/form/contact`,{
+      const response = await fetch(`${import.meta.env.VITE_API}/api/form/contact`,{
         method:"POST",
         headers:{
           "Content-Type":"application/json",

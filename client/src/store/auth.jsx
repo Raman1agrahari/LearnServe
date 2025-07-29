@@ -26,7 +26,7 @@ export const AuthProvider = ({children}) => {
     const userAuthentication = async () => {
         try{
             setisLoading(true);
-            const response = await fetch("http://localhost:3000/api/auth/user" ,{
+            const response = await fetch(`${process.env.VITE_API}/api/auth/user`,{
                 method:"GET",
                 headers:{
                     Authorization: authorizationToken   ,
@@ -52,7 +52,7 @@ export const AuthProvider = ({children}) => {
 
     const getServices = async () => {
         try{
-            const response = await fetch("http://localhost:3000/api/data/service",{
+            const response = await fetch(`${import.meta.env.VITE_API}/api/data/service`,{
                 method:"GET",
             });
 

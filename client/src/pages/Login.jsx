@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {useAuth} from "../store/auth";
 import { toast } from 'react-toastify';
 
-const URL = "http://localhost:3000/api/auth/login";
+const URL = `${import.meta.env.VITE_API}/api/auth/login`;
 
 export const Login = () => {
   const [user, setUser] = useState({
@@ -25,7 +25,7 @@ export const Login = () => {
   };
 
   const login = async () => {
-  const res = await fetch(`http://localhost:3000/api/login`, {
+  const res = await fetch(`${import.meta.env.VITE_API}/api/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

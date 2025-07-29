@@ -17,7 +17,7 @@ export const AdminUserUpdate = () => {
   
   const fetchUserData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/admin/user/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API}/api/admin/user/${id}`, {
         method:"GET",
         headers: {
           Authorization: authorizationToken,
@@ -47,7 +47,7 @@ export const AdminUserUpdate = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/api/admin/users/update/${id}/`, {
+      const response = await fetch(`${import.meta.env.VITE_API}/api/admin/users/update/${id}/`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
