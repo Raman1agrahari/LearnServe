@@ -8,10 +8,11 @@ const serviceRoute = require("./router/service.router");
 const adminRoute = require("./router/admin.router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middleware/error.middleware");
+const aiRoute = require("./router/aichat.router");
  
 const corsOptions = {
   origin:["http://localhost:5173", "https://learn-serve.vercel.app"],
-  methods:"GET, POST, PUT,DELETE, PATCH, HEAD",
+  methods:"GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials:true,
 };
 
@@ -22,6 +23,7 @@ app.use("/api/auth",authrouter);
 app.use("/api/form",contactRoute );
 app.use("/api/data",serviceRoute);
 app.use("/api/admin",adminRoute);
+app.use("/api/chat", aiRoute);
 
 app.use(errorMiddleware); 
 

@@ -13,6 +13,7 @@
  import {AdminUsers} from "./pages/admin.users";
  import { AdminContacts } from "./pages/admin.contacts";
  import {AdminUserUpdate} from "./pages/admin.update";
+ import { AIChatbot} from "./pages/aichat"
  
  
  
@@ -24,6 +25,7 @@
         <Navbar />
           <Routes>
             <Route path="/" element={<Home/>} />
+            <Route path="/aichat" element={<AIChatbot/>} />
             <Route path="/about" element={<About/>} />
             <Route path="/contact" element={<Contact/>} />
             <Route path="/services" element={<Services />} />
