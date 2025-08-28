@@ -10,7 +10,7 @@ import { useAuth } from "../../store/auth";
 export const AdminLayout = () => {
     const { user, isLoading } = useAuth();
 
-    if (isLoading || !user) return <h1>Loading...</h1>;
+    if (isLoading || !user)  return <Navigate to="/login" />;
 
     if (!user.isAdmin) return <Navigate to="/" />;
     
