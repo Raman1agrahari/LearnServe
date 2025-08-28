@@ -24,17 +24,17 @@ export const Login = () => {
       );
   };
 
-  const login = async () => {
-  const res = await fetch(`${import.meta.env.VITE_API}/api/login`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ email, password })
-  });
-  const data = await res.json();
-  console.log(data);
-};
+//   const login = async () => {
+//   const res = await fetch(`${import.meta.env.VITE_API}/api/login`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify({ email, password })
+//   });
+//   const data = await res.json();
+//   console.log(data);
+// };
 
   // handle form on submit
   const handleSubmit = async(e) => {
@@ -56,7 +56,7 @@ export const Login = () => {
 
       if(response.ok){
         alert("Login succcessfully");
-        localStorage.setItem(res_data.token);
+        //localStorage.setItem(res_data.token);
         storeTokenInLs(res_data.token);
        
         setUser({email:"",password:""});

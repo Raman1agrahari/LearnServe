@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
-    const [isLoading , setIsLoading] = useState(true);
+    const [isLoading , setisLoading] = useState(true);
     const [services,setServices] = useState([]);
     const authorizationToken = `Bearer ${token}`;
     
@@ -17,7 +17,7 @@ export const AuthProvider = ({children}) => {
 
     const isLoggedIn = !!token;
     console.log("isloggeding",isLoggedIn);
- 
+
     const LogoutUser = () => {
         setToken("");
         return localStorage.removeItem("token");
@@ -25,11 +25,11 @@ export const AuthProvider = ({children}) => {
 
     const userAuthentication = async () => {
         try{
-            setIsLoading(true);
+            setisLoading(true);
             const response = await fetch(`${import.meta.env.VITE_API}/api/auth/user`,{
                 method:"GET",
                 headers:{
-                    Authorization: authorizationToken,
+                    Authorization: authorizationToken ,
                 },
             });
 
@@ -37,17 +37,16 @@ export const AuthProvider = ({children}) => {
               const data = await response.json();
               console.log("user data",data.userData);
               setUser(data.userData);
-              setIsLoading(false);
-
+              setisLoading(false);
+              
             }else{
                 console.log("Error fetching user data");
-                setIsLoading(false);
+                setisLoading(false);
             }
 
 
         }catch(error){
            console.log(error);
-           setIsLoading(false);
         }
     };
 
@@ -59,7 +58,7 @@ export const AuthProvider = ({children}) => {
 
             if(response.ok){
                 const data = await response.json();
-                console.log("service",data.msg);
+                console.log("services",data.msg);
                 setServices(data.msg);
             }
         }catch(error){

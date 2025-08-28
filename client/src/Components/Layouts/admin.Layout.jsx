@@ -13,6 +13,7 @@ export const AdminLayout = () => {
     if (isLoading || !user) return <h1>Loading...</h1>;
 
     if (!user.isAdmin) return <Navigate to="/" />;
+    
 
     return <>
         <header>
