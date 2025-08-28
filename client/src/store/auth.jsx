@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({children}) => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
-    const [isLoading , setisLoading] = useState(true);
+    const [isLoading , setIsLoading] = useState(true);
     const [services,setServices] = useState([]);
     const authorizationToken = `Bearer ${token}`;
     
@@ -17,7 +17,7 @@ export const AuthProvider = ({children}) => {
 
     const isLoggedIn = !!token;
     console.log("isloggeding",isLoggedIn);
-
+ 
     const LogoutUser = () => {
         setToken("");
         return localStorage.removeItem("token");
@@ -25,11 +25,11 @@ export const AuthProvider = ({children}) => {
 
     const userAuthentication = async () => {
         try{
-            setisLoading(true);
-            const response = await fetch(`${process.env.VITE_API}/api/auth/user`,{
+            setIsLoading(true);
+            const response = await fetch(`${import.meta.env.VITE_API}/api/auth/user`,{
                 method:"GET",
                 headers:{
-                    Authorization: authorizationToken   ,
+                    Authorization: authorizationToken,
                 },
             });
 
@@ -37,16 +37,17 @@ export const AuthProvider = ({children}) => {
               const data = await response.json();
               console.log("user data",data.userData);
               setUser(data.userData);
-              setisLoading(false);
-              
+              setIsLoading(false);
+
             }else{
                 console.log("Error fetching user data");
-                setisLoading(false);
+                setIsLoading(false);
             }
 
 
         }catch(error){
            console.log(error);
+           setIsLoading(false);
         }
     };
 
@@ -58,7 +59,7 @@ export const AuthProvider = ({children}) => {
 
             if(response.ok){
                 const data = await response.json();
-                console.log(data.msg);
+                console.log("service",data.msg);
                 setServices(data.msg);
             }
         }catch(error){
@@ -71,7 +72,7 @@ export const AuthProvider = ({children}) => {
       userAuthentication();
     }, [])
 
-  return (<AuthContext.Provider value={{  storeTokenInLs, LogoutUser,isLoggedIn, user ,services,authorizationToken,isLoading }}>
+  return (<AuthContext.Provider value={{ isLoggedIn, storeTokenInLs, LogoutUser, user ,services,authorizationToken,isLoading }}>
     {children}
   </AuthContext.Provider>
   );

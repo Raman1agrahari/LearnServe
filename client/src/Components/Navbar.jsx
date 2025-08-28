@@ -31,6 +31,9 @@ export const Navbar = () => {
                     <li>
                     <NavLink to="/services">Services</NavLink>
                     </li>
+                    <li>
+                    <NavLink to="/admin">Admin</NavLink>
+                    </li>
 
                     {isLoggedIn ? (
                     <li>
