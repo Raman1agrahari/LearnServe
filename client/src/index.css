@@ -848,3 +848,22 @@ body tr {
   color: #f0f0f0;
   font-size: 1.1rem;
 }
+
+.unauthorized {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 77vh;   
+  background-color: #000;  
+  text-align: center;
+  color: #fff;   /* text white */
+  position: relative;
+}
+
+.unauthorized p {
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+ 

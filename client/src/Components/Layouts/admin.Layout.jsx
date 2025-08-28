@@ -10,10 +10,17 @@ import { useAuth } from "../../store/auth";
 export const AdminLayout = () => {
     const { user, isLoading } = useAuth();
 
-    if (isLoading || !user)  return <Navigate to="/login" />;
+    if (isLoading || !user) return <Navigate to="/login" />;
 
-    if (!user.isAdmin) return <Navigate to="/" />;
-    
+    if (!user.isAdmin) {
+        return (
+            <div className="unauthorized">
+                <p>You are not authorized to view this page.</p>
+            </div>
+        );
+    }
+
+
 
     return <>
         <header>
