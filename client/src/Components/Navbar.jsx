@@ -10,7 +10,7 @@ export const Navbar = () => {
      <>
        <header>
         <div className="container">
-            <div className='logo-brand'>
+            <div className='logo-brand '>
                 <NavLink to="/">Developers</NavLink>
             </div>
 

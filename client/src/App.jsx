@@ -15,9 +15,6 @@
  import {AdminUserUpdate} from "./pages/admin.update";
  import { AIChatbot} from "./pages/aichat"
  
- 
- 
- 
  const App = ()=>{
   return (
     <>

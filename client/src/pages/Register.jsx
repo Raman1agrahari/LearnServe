@@ -57,7 +57,6 @@ export const Register = () => {
   };
 
   
-
   return (
     <>
       <section>

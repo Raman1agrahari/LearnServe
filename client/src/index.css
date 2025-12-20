@@ -867,3 +867,9 @@ body tr {
   margin: 0;
 }
  
+.logo-brand a {
+  font-size: 35px;   /* size bada */
+  font-weight: 700;  /* bold */
+  text-decoration: none;
+}
+
