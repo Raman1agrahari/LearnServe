@@ -55,10 +55,9 @@ export const Login = () => {
          
 
       if(response.ok){
-        alert("Login succcessfully");
+        alert("Login successfully");
         //localStorage.setItem(res_data.token);
         storeTokenInLs(res_data.token);
-       
         setUser({email:"",password:""});
         navigate("/");
       }else{
